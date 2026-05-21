@@ -1,0 +1,144 @@
+[gd_scene load_steps=10 format=3 uid="uid://game_scene"]
+
+[ext_resource type="Script" path="res://scripts/Game.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/MazeBuilder.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/HUD.gd" id="4"]
+[ext_resource type="Script" path="res://scripts/MinimapUI.gd" id="5"]
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 10, 0)
+light_energy = 0.6
+shadow_enabled = true
+
+[node name="MazeBuilder" type="Node3D" parent="."]
+script = ExtResource("2")
+
+[node name="Items" type="Node3D" parent="."]
+
+[node name="Player" type="CharacterBody3D" parent="."]
+script = ExtResource("3")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+fov = 80.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+light_color = Color(1, 0.9, 0.7, 1)
+light_energy = 3.0
+omni_range = 8.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("4")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="HUD/MarginContainer"]
+anchor_right = 0.0
+anchor_bottom = 0.0
+
+[node name="TopRow" type="HBoxContainer" parent="HUD/MarginContainer/VBox"]
+
+[node name="LivesLabel" type="Label" parent="HUD/MarginContainer/VBox/TopRow"]
+text = "LIVES: ❤ ❤ ❤"
+theme_override_font_sizes/font_size = 22
+
+[node name="CompassLabel" type="Label" parent="HUD/MarginContainer/VBox/TopRow"]
+text = "🧭 ↑"
+visible = false
+theme_override_font_sizes/font_size = 22
+
+[node name="CurseBar" type="ProgressBar" parent="HUD/MarginContainer/VBox"]
+visible = false
+custom_minimum_size = Vector2(300, 24)
+max_value = 15.0
+value = 15.0
+fill_mode = 0
+
+[node name="CurseLabel" type="Label" parent="HUD/MarginContainer/VBox/CurseBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "☠ CURSED!"
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 13
+
+[node name="NotificationLabel" type="Label" parent="HUD"]
+anchor_left = 0.5
+anchor_top = 0.7
+anchor_right = 0.5
+anchor_bottom = 0.7
+offset_left = -350.0
+offset_right = 350.0
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 20
+
+[node name="MinimapContainer" type="Control" parent="HUD"]
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -170.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 170.0
+visible = false
+
+[node name="MinimapBG" type="ColorRect" parent="HUD/MinimapContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.05, 0.05, 0.1, 0.85)
+
+[node name="MinimapTitle" type="Label" parent="HUD/MinimapContainer"]
+anchor_right = 1.0
+text = "MINIMAP"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.5, 0.8, 1.0, 1)
+
+[node name="Minimap" type="Control" parent="HUD/MinimapContainer"]
+anchor_top = 0.12
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("5")
+
+[node name="ControlsLabel" type="Label" parent="HUD"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -30.0
+offset_right = 250.0
+text = "WASD/Arrows: Move & Turn   |   E: Interact   |   ESC: Menu"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="InteractLabel" type="Label" parent="HUD"]
+anchor_left = 0.5
+anchor_top = 0.85
+anchor_right = 0.5
+anchor_bottom = 0.85
+offset_left = -150.0
+offset_top = -20.0
+offset_right = 150.0
+offset_bottom = 20.0
+visible = false
+text = "[ E ] Interacționează"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1.0, 0.9, 0.2, 1)
