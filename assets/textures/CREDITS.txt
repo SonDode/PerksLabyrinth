@@ -1,0 +1,13 @@
+TEXTURI — Licență CC0 (domeniu public, fără atribuire obligatorie)
+Sursă: ambientCG  (https://ambientcg.com)  — Licență: Creative Commons CC0 1.0
+
+  wall_color.jpg / wall_normal.jpg   <- Bricks075A      (pereți)
+  floor_color.jpg / floor_normal.jpg <- PavingStones070 (podea)
+  npc_color.jpg                      <- Lava004         (Gardianul / NPC)
+  perk_color.jpg                     <- Marble016       (perk Hartă / blestem)
+  perk_crystal.jpg                   <- Rock035         (perk Tunel / ieșire)
+  perk_metal.jpg                     <- Metal032        (perk Busolă / capcană)
+  perk_marble2.jpg                   <- Marble006       (+Viață)
+
+CC0 nu impune atribuire, dar sursa e notată aici pentru transparență.
+Texturile au fost redimensionate/selectate (doar Color + NormalGL) din pachetele 1K-JPG.
